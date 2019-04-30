@@ -1,5 +1,21 @@
-{% extends "_layouts/auth.njk" %}
+{% extends "_layouts/auth.njk" %} {% block body %}
+<form action="/signup" method="POST">
+  <label for="avatar">
+    <img src="/images/avatar.svg" height="24" alt="" />
+  </label>
+  <input type="file" id="avatar" />
 
-{% block body %}
-  <h1>vamos lar</h1>
+  <input type="text" name="name" id="name" placeholder="Name" />
+  <input type="email" name="email" id="email" placeholder="Email" />
+  <input type="password" name="password" id="password" placeholder="Password" />
+  <label for="provider">
+    <input type="checkbox" name="provider" value="1" id="provider" />
+    I'm Barber
+  </label>
+
+  <button type="submit">Create Account</button>
+
+  <a href="/">Back</a>
+</form>
+
 {% endblock %}
