@@ -23,7 +23,7 @@ class App {
       express: this.express,
       autoescape: true
     })
-    this.express.set('view engine', 'nunjucks')
+    this.express.set('view engine', 'njk')
   }
 
   routes () {
