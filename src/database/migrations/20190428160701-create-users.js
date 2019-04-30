@@ -6,7 +6,7 @@ module.exports = {
       id: {
         allowNull: false,
         autoIncrement: true,
-        primarykey: true,
+        primaryKey: true,
         type: Sequelize.INTEGER
       },
       name: {
@@ -29,7 +29,7 @@ module.exports = {
       provider: {
         allowNull: false,
         defaultValue: false,
-        type: Sequelize.BOLEAN
+        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,
