@@ -1,5 +1,5 @@
 {% extends "_layouts/auth.njk" %} {% block body %}
-<form action="/signup" method="POST">
+<form action="/signup" method="POST" enctype="multipart/form-data">
   <label for="avatar">
     <img src="/images/avatar.svg" height="24" alt="" />
   </label>
@@ -17,5 +17,14 @@
 
   <a href="/">Back</a>
 </form>
+<script type="text/javascript">
+  let inputImage = document.getElementById("avatar");
+  let img = document.querySelector("label[for=avatar] img");
+
+  inputImage.onchange = e => {
+    img.classList.add("preview");
+    img.src = URL.createObjectURL(e.target.files[0]);
+  };
+</script>
 
 {% endblock %}
