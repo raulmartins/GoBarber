@@ -5,10 +5,14 @@ class UserController {
   }
 
   async store (req, res) {
-    const { filename: avatar } = req.file
-    await User.create({ ...req.body, avatar })
-
-    res.redirect('/')
+    if (req.file) {
+      const { filename: avatar } = req.file
+      await User.create({ ...req.body, avatar })
+      res.redirect('/')
+    } else {
+      req.flash('info', 'Please, insert your image')
+      res.redirect('/signup')
+    }
   }
 }
 module.exports = new UserController()
