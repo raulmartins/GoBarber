@@ -15,14 +15,14 @@ module.exports = {
       },
       user_id: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.INTEGER,
         reference: { model: 'users', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
       },
       provider_id: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.INTEGER,
         reference: { model: 'users', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
