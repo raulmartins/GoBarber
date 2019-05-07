@@ -1,9 +1,11 @@
 const moment = require('moment')
 const { Op } = require('sequelize')
 const { Appointment } = require('../models')
+
 class AvailableController {
   async index (req, res) {
     const date = moment(parseInt(req.query.date))
+
     const appointments = await Appointment.findAll({
       where: {
         provider_id: req.params.provider,
@@ -15,6 +17,7 @@ class AvailableController {
         }
       }
     })
+
     const schedule = [
       '08:00',
       '09:00',
@@ -26,11 +29,7 @@ class AvailableController {
       '15:00',
       '16:00',
       '17:00',
-      '18:00',
-      '19:00',
-      '20:00',
-      '21:00',
-      '22:00'
+      '18:00'
     ]
 
     const available = schedule.map(time => {
@@ -39,16 +38,18 @@ class AvailableController {
         .hour(hour)
         .minute(minute)
         .second(0)
+
       return {
         time,
         value: value.format(),
         available:
           value.isAfter(moment()) &&
-          !appointments.find(
-            appointment => moment(appointment.date).format('HH:mm') === time
-          )
+          !appointments.find(a => moment(a.date).format('HH:mm') === time)
       }
     })
+
+    console.log(available)
+
     return res.render('available/index', { available })
   }
 }
